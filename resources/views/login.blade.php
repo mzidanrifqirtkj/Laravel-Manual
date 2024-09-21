@@ -26,7 +26,11 @@
                                 <b>Opps!</b> {{ session('error') }}
                             </div>
                         @endif
-
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form action="{{ route('postLogin') }}" method="POST">
                             @csrf
                             <!-- Email input -->

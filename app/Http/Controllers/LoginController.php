@@ -17,18 +17,25 @@ class LoginController extends Controller
 
         // dd($request->all);
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return view('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         }
 
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return view('user.dashboard');
+            return redirect()->route('user.dashboard');
         }
 
         return redirect('/login')->with('error', 'Email atau password salah.');
     }
 
-    public function logout(){
-        Auth::logout();
-        return redirect('/login');
+    public function logout()
+{
+    if (Auth::guard('admin')->check()) {
+        Auth::guard('admin')->logout();
+    } elseif (Auth::guard('user')->check()) {
+        Auth::guard('user')->logout();
     }
+
+    // Redirect ke halaman login setelah logout
+    return redirect()->route('login')->with('success', 'Anda telah berhasil logout.');
+}
 }
