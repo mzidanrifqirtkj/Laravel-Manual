@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'user2',
+            'name' => 'user',
             'level' => 'user',
-            'email' => 'user2@gmail.com',
+            'email' => 'user@gmail.com',
             'password' => bcrypt('12345678'), // Ganti dengan password yang diinginkan
         ]);
     }
