@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\AdminController;
-use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,14 @@ Route::get('/', function () {
 
 //login
 Route::get("/login", function () {
-    return view("login");
+    return view("auth.login");
 })->name("login");
 
 Route::post('postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('register', [RegisterController::class, 'postRegister'])->name('postRegister');
+
 
 // Rute yang hanya bisa diakses oleh pengguna yang terautentikasi
 Route::prefix('admin')->middleware('auth.custom')->group(function () {

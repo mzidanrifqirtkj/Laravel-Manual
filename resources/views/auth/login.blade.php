@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMz0A5xFq4Ggfg3z5j0/SE6ZrZ1K4zTf5e5gO" crossorigin="anonymous">
 </head>
 
 <body class="d-flex align-items-center min-vh-100 bg-light">
@@ -23,7 +25,7 @@
 
                         @if (session('error'))
                             <div class="alert alert-danger">
-                                <b>Opps!</b> {{ session('error') }}
+                                <b>Oops!</b> {{ session('error') }}
                             </div>
                         @endif
                         @if (session('success'))
@@ -31,6 +33,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+
                         <form action="{{ route('postLogin') }}" method="POST">
                             @csrf
                             <!-- Email input -->
@@ -50,14 +53,15 @@
                                 <div class="col d-flex justify-content-center">
                                     <!-- Checkbox -->
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember" />
+                                        <input class="form-check-input" type="checkbox" id="remember"
+                                            name="remember" />
                                         <label class="form-check-label" for="remember"> Remember me </label>
                                     </div>
                                 </div>
 
                                 <div class="col text-end">
                                     <!-- Simple link -->
-                                    <a href="#!">Forgot password?</a>
+                                    <a href="#forgotPassword">Forgot password?</a>
                                 </div>
                             </div>
 
@@ -67,7 +71,7 @@
 
                         <!-- Register buttons -->
                         <div class="text-center">
-                            <p>Not a member? <a href="#!">Register</a></p>
+                            <p>Not a member? <a href="{{ route('register') }}">Register</a></p>
                             <p>or sign up with:</p>
                             <button type="button" class="btn btn-link btn-floating mx-1">
                                 <i class="fab fa-facebook-f"></i>
